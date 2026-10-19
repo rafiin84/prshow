@@ -1,0 +1,10 @@
+{
+  "name": "PR Show — Beyond the Screen",
+  "short_name": "PR Show",
+  "description": "The official fan community for Pradeep Ranganathan (demo build).",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0b10",
+  "theme_color": "#d23a1f",
+  "icons": [{ "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

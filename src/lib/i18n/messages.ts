@@ -1,0 +1,42 @@
+// Message catalogue. English is the launch language; add `ta` (Tamil) etc. as full catalogues without touching components.
+export const en = {
+  "brand.name": "PR Show",
+  "brand.tagline": "Beyond the Screen.",
+  "nav.home": "Home",
+  "nav.games": "Games",
+  "nav.pr": "PR",
+  "nav.reels": "Reels",
+  "nav.events": "Events",
+  "nav.messages": "Messages",
+  "nav.profile": "Open profile",
+  "nav.notifications": "Notifications",
+  "nav.workspace": "Workspace",
+  "nav.members": "Members",
+  "nav.appointments": "Appointments",
+  "nav.moderation": "Moderation",
+  "nav.guardian": "AI Content Guardian",
+  "nav.quizStudio": "Quiz Studio",
+  "nav.announcements": "Announcements",
+  "nav.rewards": "Points & rewards",
+  "nav.notificationsAdmin": "Notification history",
+  "nav.activity": "Activity log",
+  "common.retry": "Try again",
+  "common.cancel": "Cancel",
+  "common.save": "Save",
+  "common.back": "Back",
+  "common.demo": "Demo",
+  "common.loading": "Loading…",
+  "error.generic": "Something went wrong",
+  "empty.generic": "Nothing here yet",
+  "access.denied.title": "This area isn't available to your role",
+  "access.denied.body": "Admin tools are only available to admin roles. Role switching in this build is a demo simulation, not a security control.",
+  "badge.official": "Official",
+  "badge.fan": "Fan-created",
+  "badge.demo": "Demo content",
+} as const;
+
+export type MessageKey = keyof typeof en;
+export const catalogues: Record<string, Partial<Record<MessageKey, string>>> = {
+  en,
+  ta: { "brand.tagline": "திரைக்கு அப்பால்.", "nav.home": "முகப்பு", "nav.games": "விளையாட்டு", "nav.reels": "ரீல்ஸ்", "nav.events": "நிகழ்வுகள்" },
+};
