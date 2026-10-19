@@ -15,6 +15,8 @@ import { fan } from "@/lib/api";
 import { share } from "@/lib/share";
 import { useSession } from "@/stores/session";
 import { cn } from "@/lib/utils";
+import { STILL_POOL } from "@/data/images";
+
 
 export default function MovieDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -29,8 +31,8 @@ export default function MovieDetail({ params }: { params: Promise<{ id: string }
       {({ movie: m, relatedAlbums, related }) => (
         <div className="space-y-10">
           <section className="relative -mx-4 overflow-hidden sm:mx-0 sm:rounded-[var(--radius-xl)]">
-            <DemoArt hue={m.hue} rounded={false} label={false} className="absolute inset-0" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/20" />
+            <DemoArt hue={m.hue} rounded={false} label={false} src={m.backdrop ?? m.poster} className="absolute inset-0" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/55 backdrop-blur-[3px]" />
             <div className="relative flex flex-col gap-6 p-6 pt-24 text-white sm:flex-row sm:items-end sm:p-10 sm:pt-32">
               <MoviePoster movie={m} className="w-36 shrink-0 shadow-pop sm:w-48" />
               <div className="min-w-0">
@@ -63,7 +65,7 @@ export default function MovieDetail({ params }: { params: Promise<{ id: string }
                 </ul>
               </section>
               <section><SectionHeading title="Stills" />
-                <div className="no-scrollbar flex gap-3 overflow-x-auto">{m.stills.map((s, i) => <DemoArt key={s} hue={(m.hue + i * 30) % 360} ratio="16/10" title={s} className="w-64 shrink-0" />)}</div>
+                <div className="no-scrollbar flex gap-3 overflow-x-auto">{m.stills.map((s, i) => <DemoArt key={s} hue={(m.hue + i * 30) % 360} src={STILL_POOL[(i + m.year) % STILL_POOL.length]} captionOnImage ratio="16/10" title={s} className="w-64 shrink-0" />)}</div>
               </section>
             </div>
             <aside className="space-y-6">

@@ -6,10 +6,11 @@ import { cn, hash } from "@/lib/utils";
  * Replaceable artwork. If an approved `src` is supplied and loads, it's used; otherwise a neutral
  * generated gradient is shown and (optionally) marked as demo art — never presented as official photography.
  */
-export function DemoArt({ hue, title, subtitle, className, ratio, label, src, alt, rounded = true, children }: {
-  hue: number; title?: string; subtitle?: string; className?: string; ratio?: string; label?: string | false; src?: string; alt?: string; rounded?: boolean; children?: React.ReactNode;
+export function DemoArt({ hue, title, subtitle, className, ratio, label, src, alt, rounded = true, captionOnImage, children }: {
+  hue: number; title?: string; subtitle?: string; className?: string; ratio?: string; label?: string | false; src?: string; alt?: string; rounded?: boolean; captionOnImage?: boolean; children?: React.ReactNode;
 }) {
   const [failed, setFailed] = useState(false);
+  const [tries, setTries] = useState(0);
   const h2 = (hue + 48) % 360;
   const seed = hash(`${hue}${title ?? ""}`);
   const x = 18 + (seed % 60);
@@ -18,7 +19,7 @@ export function DemoArt({ hue, title, subtitle, className, ratio, label, src, al
     <div role="img" aria-label={alt ?? title ?? "Decorative artwork"} className={cn("relative isolate max-w-full overflow-hidden text-white", rounded && "rounded-[var(--radius-lg)]", className)} style={{ aspectRatio: ratio, background: `radial-gradient(120% 90% at ${x}% 0%, hsl(${h2} 85% 62% / .85), transparent 60%), radial-gradient(90% 80% at 90% 100%, hsl(${hue} 80% 30%), transparent 65%), linear-gradient(160deg, hsl(${hue} 65% 38%), hsl(${(hue + 300) % 360} 55% 14%))` }}>
       {showSrc && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} alt="" loading="lazy" onError={() => setFailed(true)} className="absolute inset-0 size-full object-cover" />
+        <img key={tries} src={tries ? `${src}?retry=${tries}` : src} alt="" loading="lazy" onError={() => (tries < 2 ? setTimeout(() => setTries((t) => t + 1), 800 * (tries + 1)) : setFailed(true))} className="absolute inset-0 size-full object-cover" />
       )}
       {!showSrc && (
         <>
@@ -27,7 +28,7 @@ export function DemoArt({ hue, title, subtitle, className, ratio, label, src, al
           <span aria-hidden className="absolute inset-0 opacity-[.12] mix-blend-overlay" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
         </>
       )}
-      {(title || subtitle) && !showSrc && (
+      {(title || subtitle) && (!showSrc || captionOnImage) && (
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 pt-10">
           {subtitle && <p className="text-[0.7rem] font-medium tracking-[0.14em] uppercase opacity-80">{subtitle}</p>}
           {title && <p className="font-display text-xl leading-tight font-semibold">{title}</p>}

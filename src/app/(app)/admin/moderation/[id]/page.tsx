@@ -17,6 +17,8 @@ import { LEVEL_LABEL, reviewLevel, isOpen } from "@/lib/moderation/workflow";
 import { canDecideCase, canEscalateCase } from "@/lib/permissions/policy";
 import { locLabel } from "@/data/seeds/locations";
 import { fmtDateTime } from "@/lib/utils";
+import { reelImage } from "@/data/images";
+
 
 type Dlg = "approve" | "reject" | "correction" | "escalate" | null;
 export default function CaseDetail({ params }: { params: Promise<{ id: string }> }) {
@@ -42,7 +44,7 @@ export default function CaseDetail({ params }: { params: Promise<{ id: string }>
               <div className="space-y-6">
                 <Card className="space-y-4">
                   <div className="flex gap-4">
-                    {c.subjectType === "reel" && reel && <DemoArt hue={reel.hue} ratio="9/16" label="Demo video" className="w-28 shrink-0" />}
+                    {c.subjectType === "reel" && reel && <DemoArt hue={reel.hue} src={reelImage(reel)} ratio="9/16" label="Demo video" className="w-28 shrink-0" />}
                     <div className="min-w-0">
                       <div className="mb-2 flex flex-wrap gap-2"><Badge tone="neutral" className="capitalize">{c.subjectType}</Badge>{reel && <Badge>{reel.category}</Badge>}<Badge tone="ink">Currently: {LEVEL_LABEL[level]}</Badge></div>
                       <p className="text-[1.05rem]">{c.excerpt || "No caption provided."}</p>

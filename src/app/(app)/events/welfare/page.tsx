@@ -21,7 +21,7 @@ export default function WelfareList() {
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {list.map(({ activity: a, mine, count }) => (
               <li key={a.id}><Link href={`/events/welfare/${a.id}`} className="group block overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface hover:shadow-card">
-                <DemoArt hue={a.hue} ratio="16/9" rounded={false} label={false} />
+                <DemoArt hue={a.hue} ratio="16/9" rounded={false} label={false} src={a.image} />
                 <div className="space-y-2 p-4"><h3 className="text-lg font-semibold">{a.title}</h3><p className="text-sm text-muted-fg">{fmtDate(a.startsAt)} · {locLabel(a.loc, 2)}</p><div className="flex flex-wrap items-center gap-2 pt-1">{a.status === "completed" ? <StatusBadge status="completed" /> : null}{mine ? <StatusBadge status={mine.status} /> : null}<span className="text-xs text-muted-fg">{count} registered</span></div></div>
               </Link></li>
             ))}

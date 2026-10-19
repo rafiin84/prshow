@@ -16,6 +16,8 @@ import { fmtDate, fmtRelative } from "@/lib/utils";
 import { toast } from "@/stores/toast";
 import { useDemoNow } from "@/lib/query";
 import { cn } from "@/lib/utils";
+import { rewardImage } from "@/data/images";
+
 
 export default function RewardsPage() {
   const userId = useSession((s) => s.userId);
@@ -49,7 +51,7 @@ export default function RewardsPage() {
                 <ul id="unlock" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {r.rewards.map((w) => (
                     <li key={w.id}><Card className="flex h-full flex-col gap-3 p-4">
-                      <div className="relative"><DemoArt hue={w.hue} ratio={w.kind === "wallpaper" ? "9/12" : "16/9"} label={w.kind === "wallpaper" ? "Demo art" : "Simulated"} className={cn(!w.unlocked && "grayscale")}>{w.kind !== "wallpaper" && <Ticket weight="duotone" className="absolute right-4 bottom-4 size-10 opacity-80" aria-hidden />}</DemoArt></div>
+                      <div className="relative"><DemoArt hue={w.hue} src={rewardImage(w)} ratio={w.kind === "wallpaper" ? "9/12" : "16/9"} label={w.kind === "wallpaper" ? "Demo art" : "Simulated"} className={cn(!w.unlocked && "brightness-[.65] saturate-[.6]")}>{w.kind !== "wallpaper" && <Ticket weight="duotone" className="absolute right-4 bottom-4 size-10 opacity-80" aria-hidden />}</DemoArt></div>
                       <div className="flex-1"><p className="font-semibold">{w.name}</p><p className="text-sm text-muted-fg">{w.description}</p></div>
                       {w.unlocked ? (
                         w.kind === "wallpaper" ? <Button variant="outline" onClick={() => setPreview(w.id)}><LockOpen className="size-4" aria-hidden />Preview &amp; save</Button> : <Badge tone="gold">Unlocked · simulated, not redeemable</Badge>
@@ -67,7 +69,7 @@ export default function RewardsPage() {
               </section>
               <Modal open={!!pv} onClose={() => setPreview(null)} title={pv?.name ?? "Wallpaper"} description="Demo artwork. Saving is simulated and no file is downloaded." size="sm"
                 footer={<><Button variant="ghost" onClick={() => setPreview(null)}>Close</Button><Button onClick={() => { toast.success("Wallpaper saved (simulated)", "In the real app this would go to your photos."); setPreview(null); }}><Download className="size-4" aria-hidden />Save wallpaper</Button></>}>
-                {pv && <DemoArt hue={pv.hue} ratio="9/14" label="Demo art" className="mx-auto max-h-[55dvh]" />}
+                {pv && <DemoArt hue={pv.hue} src={rewardImage(pv)} ratio="9/14" label="Demo art" className="mx-auto max-h-[55dvh]" />}
               </Modal>
             </div>
           );

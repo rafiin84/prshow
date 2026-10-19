@@ -9,6 +9,8 @@ import { useApiMutation, useApiQuery } from "@/lib/query";
 import { fan } from "@/lib/api";
 import { share } from "@/lib/share";
 import { useSession } from "@/stores/session";
+import { assetImage } from "@/data/images";
+
 
 export default function AlbumDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -25,7 +27,7 @@ export default function AlbumDetail({ params }: { params: Promise<{ id: string }
           <div className="columns-2 gap-3 sm:columns-3 lg:columns-4 [&>*]:mb-3">
             {a.assets.map((s, i) => (
               <button key={s.id} onClick={() => setOpen(i)} aria-label={`Open photo: ${s.caption}`} className="group block w-full cursor-pointer break-inside-avoid text-left">
-                <DemoArt hue={s.hue} ratio={String(s.ratio)} alt={s.caption} label={false} className="transition-transform duration-300 group-hover:scale-[1.02]" />
+                <DemoArt hue={s.hue} src={assetImage(s)} ratio={String(s.ratio)} alt={s.caption} label={false} className="transition-transform duration-300 group-hover:scale-[1.02]" />
               </button>
             ))}
           </div>

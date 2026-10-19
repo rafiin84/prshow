@@ -12,6 +12,8 @@ import { fan } from "@/lib/api";
 import { GAME_MODES } from "@/data/seeds/content";
 import { useSession } from "@/stores/session";
 import { MODE_LABEL } from "@/features/games/history-list";
+import { MODE_IMAGE } from "@/data/images";
+
 
 export default function GamesHome() {
   const userId = useSession((s) => s.userId);
@@ -23,7 +25,7 @@ export default function GamesHome() {
         {(g) => (
           <div className="space-y-10">
             <Link href="/games/play/quiz-daily" className="relative block overflow-hidden rounded-[var(--radius-xl)] bg-ink p-7 text-on-ink sm:p-10">
-              <DemoArt hue={12} rounded={false} label={false} className="absolute inset-0 opacity-50" />
+              <DemoArt hue={12} rounded={false} label={false} src="/images/sections/games.jpg" className="absolute inset-0" /><div aria-hidden className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/20" />
               <div className="relative max-w-lg">
                 <Badge tone="gold">Daily challenge</Badge>
                 <h2 className="font-display mt-3 text-4xl leading-tight font-semibold sm:text-5xl">{g.dailyDone ? "You're done for today" : "Today's three questions"}</h2>
@@ -46,7 +48,7 @@ export default function GamesHome() {
                   const count = g.quizzes.filter((x) => x.mode === m.mode).length;
                   return (
                     <Link key={m.mode} href={`/games/mode/${m.mode}`} className="group relative block overflow-hidden rounded-[var(--radius-lg)]">
-                      <DemoArt hue={m.hue} ratio="16/8" label={false} className="min-h-40 transition-transform duration-500 group-hover:scale-[1.03]" />
+                      <DemoArt hue={m.hue} src={MODE_IMAGE[m.mode]} ratio="16/8" label={false} className="min-h-40 transition-transform duration-500 group-hover:scale-[1.03]" />
                       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-5 text-white"><h3 className="font-display text-2xl font-semibold">{m.name}</h3><p className="text-sm text-white/80">{m.blurb} · {count} quiz{count === 1 ? "" : "zes"}</p></div>
                     </Link>
                   );

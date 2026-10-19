@@ -109,6 +109,10 @@ export interface Movie {
   cast: { name: string; as?: string }[];
   crew: { name: string; job: string }[];
   verified: boolean;
+  /** Optional approved poster path under /public (e.g. /images/movies/dragon.jpg). Falls back to demo art if missing. */
+  poster?: string;
+  /** Optional wide image for the detail-page header. */
+  backdrop?: string;
   mediaSlots: { id: string; kind: "trailer" | "song" | "bts"; title: string; available: boolean }[];
   stills: string[];
   status: "published" | "draft";
@@ -232,6 +236,8 @@ export interface PREvent {
   organiser: string;
   schedule: { time: string; item: string }[];
   requiresMembership: boolean;
+  /** Optional approved image path under /public. Falls back to demo art. */
+  image?: string;
 }
 export type RSVPStatus = "confirmed" | "waitlisted" | "cancelled" | "checked_in";
 export interface EventRSVP { id: string; eventId: string; userId: string; status: RSVPStatus; at: number; checkedInAt?: number }
@@ -248,6 +254,7 @@ export interface WelfareActivity {
   steps: string[];
   capacity: number;
   hue: number;
+  image?: string;
   status: "draft" | "published" | "completed";
 }
 export type ParticipationStatus = "registered" | "approved" | "declined" | "attended";

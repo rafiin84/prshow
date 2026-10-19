@@ -221,7 +221,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
-      <main id="main" className={cn("mx-auto pb-nav lg:pb-16", admin ? "max-w-[88rem]" : "max-w-[var(--content-w)]", bleed ? "px-0 md:px-6 md:pt-6" : "px-4 pt-5 sm:px-6 sm:pt-8")}>
+      <main id="main" className={cn("mx-auto pb-nav lg:pb-16", admin ? "max-w-[88rem]" : "max-w-[var(--content-w)]", bleed ? "px-0 md:max-w-none lg:pb-0" : "px-4 pt-5 sm:px-6 sm:pt-8")}>
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div key={pathname} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}>
             {denied ? <AccessDenied /> : children}

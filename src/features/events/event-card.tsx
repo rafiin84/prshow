@@ -13,7 +13,7 @@ export function EventCard({ event, stats, myRsvp, href, ended }: { event: PREven
   const d = fmtMonthDay(event.startsAt);
   return (
     <Link href={href ?? `/events/${event.id}`} className="group block overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface transition-shadow hover:shadow-card">
-      <DemoArt hue={event.hue} ratio="16/10" rounded={false} label={false} className="transition-transform duration-500 group-hover:scale-[1.02]">
+      <DemoArt hue={event.hue} ratio="16/10" rounded={false} label={false} src={event.image} className="transition-transform duration-500 group-hover:scale-[1.02]">
         <div className="absolute top-3 left-3 rounded-2xl bg-white/95 px-3 py-1.5 text-center text-[#14111a] shadow"><p className="text-[0.65rem] leading-none font-bold tracking-wider uppercase">{d.month}</p><p className="font-display text-2xl leading-tight font-bold">{d.day}</p></div>
         <div className="absolute top-3 right-3"><Badge tone="ink">{CATEGORY_LABEL[event.category]}</Badge></div>
       </DemoArt>

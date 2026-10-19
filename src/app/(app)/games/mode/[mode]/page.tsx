@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { useApiQuery } from "@/lib/query";
 import { fan } from "@/lib/api";
 import { GAME_MODES } from "@/data/seeds/content";
+import { quizImage } from "@/data/images";
+
 
 export default function ModePage({ params }: { params: Promise<{ mode: string }> }) {
   const { mode } = use(params);
@@ -23,7 +25,7 @@ export default function ModePage({ params }: { params: Promise<{ mode: string }>
           <ul className="grid gap-4 sm:grid-cols-2">
             {list.filter((x) => x.mode === mode).map((quiz) => (
               <li key={quiz.id}><Link href={`/games/challenge/${quiz.id}`} className="group block overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface hover:shadow-card">
-                <DemoArt hue={quiz.hue} ratio="16/7" rounded={false} label={false} />
+                <DemoArt hue={quiz.hue} src={quizImage(quiz)} ratio="16/7" rounded={false} label={false} />
                 <div className="p-5"><h3 className="text-xl font-semibold">{quiz.title}</h3><p className="mt-1 text-sm text-muted-fg">{quiz.blurb}</p><div className="mt-3 flex gap-2"><Badge>{quiz.questions.length} questions</Badge><Badge tone="gold" className="capitalize">{quiz.difficulty}</Badge></div></div>
               </Link></li>
             ))}

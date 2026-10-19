@@ -11,6 +11,8 @@ import { fan } from "@/lib/api";
 import { useSession } from "@/stores/session";
 import { fmtRelative } from "@/lib/utils";
 import { ROLE_LABEL } from "@/lib/permissions/policy";
+import { reelImage } from "@/data/images";
+
 
 export default function Submissions() {
   const userId = useSession((s) => s.userId);
@@ -24,7 +26,7 @@ export default function Submissions() {
           <ul className="space-y-4">
             {list.map(({ reel, case: c }) => (
               <li key={reel.id}><Card className="flex flex-col gap-4 sm:flex-row">
-                <DemoArt hue={reel.hue} ratio="9/16" label={false} className="hidden w-20 shrink-0 sm:block" />
+                <DemoArt hue={reel.hue} src={reelImage(reel)} ratio="9/16" label={false} className="hidden w-20 shrink-0 sm:block" />
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2"><h2 className="text-lg font-semibold">{reel.title}</h2><StatusBadge status={reel.status} /></div>
                   <p className="text-sm text-muted-fg">{reel.category} · submitted {fmtRelative(reel.createdAt, now)}</p>

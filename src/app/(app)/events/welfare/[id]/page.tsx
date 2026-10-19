@@ -28,7 +28,7 @@ export default function WelfareDetail({ params }: { params: Promise<{ id: string
           <PageHeader backHref="/events/welfare" backLabel="Welfare" title={a.title} actions={<DemoContentBadge />} />
           <div className="grid gap-8 lg:grid-cols-[1fr_22rem]">
             <div className="space-y-8">
-              <DemoArt hue={a.hue} ratio="21/9" label={false} className="min-h-40" />
+              <DemoArt hue={a.hue} ratio="21/9" label={false} src={a.image} className="min-h-40" />
               <section><SectionHeading title="Purpose" /><p className="max-w-2xl text-[1.05rem] leading-relaxed">{a.purpose}</p></section>
               <section><SectionHeading title="How to take part" /><ol className="space-y-3">{a.steps.map((s, i) => <li key={s} className="flex gap-4"><span className="grid size-8 shrink-0 place-items-center rounded-full bg-accent-soft font-semibold text-accent">{i + 1}</span><span className="pt-1">{s}</span></li>)}</ol></section>
               <dl className="grid gap-4 sm:grid-cols-2 text-sm"><div><dt className="text-muted-fg">When</dt><dd className="font-medium">{fmtDateTime(a.startsAt)}</dd></div><div><dt className="text-muted-fg">Where</dt><dd className="font-medium">{a.venue}</dd><dd className="text-muted-fg">{locLabel(a.loc)}</dd></div><div><dt className="text-muted-fg">Eligibility</dt><dd className="font-medium">{a.eligibility}</dd></div><div><dt className="text-muted-fg">Registered</dt><dd className="font-medium">{count} of {a.capacity}</dd></div></dl>

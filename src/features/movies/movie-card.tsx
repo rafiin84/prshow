@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import type { Movie } from "@/types";
 
 export function MoviePoster({ movie, className }: { movie: Movie; className?: string }) {
-  return <DemoArt hue={movie.hue} ratio="2/3" title={movie.title} subtitle={String(movie.year)} className={className} />;
+  return <DemoArt hue={movie.hue} ratio="2/3" title={movie.title} subtitle={String(movie.year)} src={movie.poster} alt={`${movie.title} (${movie.year}) poster`} className={className} />;
 }
 export function MovieCard({ movie, href }: { movie: Movie; href?: string }) {
   return (

@@ -17,6 +17,8 @@ import { share } from "@/lib/share";
 import { useSession } from "@/stores/session";
 import { cn } from "@/lib/utils";
 import type { Reel } from "@/types";
+import { reelImage } from "@/data/images";
+
 
 /** Simulated playback: a demo "video" with a moving progress bar. It never produces audio. */
 export function ReelPlayer({ reel, active, className, muted, onToggleMute }: { reel: Reel; active: boolean; className?: string; muted: boolean; onToggleMute: () => void }) {
@@ -53,7 +55,7 @@ export function ReelPlayer({ reel, active, className, muted, onToggleMute }: { r
   return (
     <div id={`player-${reel.id}`} className={cn("relative isolate overflow-hidden bg-ink text-white", className)}>
       <motion.div className="absolute inset-0" animate={playing && !reduced ? { filter: [`hue-rotate(0deg)`, `hue-rotate(25deg)`, `hue-rotate(0deg)`] } : {}} transition={{ duration: 8, repeat: Infinity }}>
-        <DemoArt hue={reel.hue} rounded={false} label={false} className="size-full" />
+        <DemoArt hue={reel.hue} src={reelImage(reel)} rounded={false} label={false} className="size-full" />
       </motion.div>
       <button onClick={() => state === "ready" && setPlaying((p) => !p)} aria-label={playing ? `Pause ${reel.title}` : `Play ${reel.title}`} className="absolute inset-0 z-10 grid cursor-pointer place-items-center">
         {state === "loading" ? <SpinnerGap className="size-10 animate-spin" aria-label="Loading video" /> : !playing && <span className="grid size-16 place-items-center rounded-full bg-black/40 backdrop-blur"><Play weight="fill" className="size-8" aria-hidden /></span>}
@@ -82,11 +84,11 @@ export function useEngagement() {
   return { liked: (id: string) => !!q.data?.likedIds.includes(id), saved: (id: string) => !!q.data?.savedIds.includes(id), like: like.mutate, save: save.mutate, userId };
 }
 
-export function ReelActionRail({ reel, eng, onReport, className, detailHref }: { reel: Reel; eng: ReturnType<typeof useEngagement>; onReport: () => void; className?: string; detailHref?: string }) {
+export function ReelActionRail({ reel, eng, onReport, className, detailHref, dark }: { reel: Reel; eng: ReturnType<typeof useEngagement>; onReport: () => void; className?: string; detailHref?: string; dark?: boolean }) {
   const liked = eng.liked(reel.id);
   const saved = eng.saved(reel.id);
-  const btn = "grid size-12 cursor-pointer place-items-center rounded-full bg-black/35 text-white backdrop-blur transition-transform active:scale-90 md:bg-muted md:text-fg";
-  const lbl = "text-xs font-medium tabular-nums text-white md:text-fg";
+  const btn = dark ? "grid size-12 cursor-pointer place-items-center rounded-full text-white transition hover:bg-white/10 active:scale-90" : "grid size-12 cursor-pointer place-items-center rounded-full bg-black/35 text-white backdrop-blur transition-transform active:scale-90 md:bg-muted md:text-fg";
+  const lbl = dark ? "text-xs font-medium tabular-nums text-white" : "text-xs font-medium tabular-nums text-white md:text-fg";
   return (
     <div className={cn("flex flex-col items-center gap-4", className)}>
       <div className="flex flex-col items-center gap-1"><motion.button whileTap={{ scale: 1.25 }} onClick={() => eng.like(reel.id)} aria-pressed={liked} aria-label={liked ? "Unlike" : "Like"} className={btn}><Heart weight={liked ? "fill" : "regular"} className={cn("size-6", liked && "text-[#ff4d6a]")} aria-hidden /></motion.button><span className={lbl}>{reel.likes}</span></div>

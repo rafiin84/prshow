@@ -8,6 +8,8 @@ import { OfficialBadge } from "@/components/ui/badge";
 import { Chips } from "@/components/ui/tabs";
 import { useApiQuery } from "@/lib/query";
 import { fan } from "@/lib/api";
+import { albumImage } from "@/data/images";
+
 
 const CATS = [{ value: "all", label: "All" }, { value: "stills", label: "Movie stills" }, { value: "bts", label: "Behind the scenes" }, { value: "posters", label: "Posters" }, { value: "events", label: "Events" }];
 export default function Gallery() {
@@ -21,7 +23,7 @@ export default function Gallery() {
         {(list) => (
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {list.filter((a) => cat === "all" || a.category === cat).map((a) => (
-              <li key={a.id}><Link href={`/pr/gallery/${a.id}`} className="group block"><DemoArt hue={a.hue} ratio="4/3" className="transition-transform duration-500 group-hover:-translate-y-1" title={a.title} subtitle={`${a.assets.length} photos`} /><p className="mt-2 text-sm text-muted-fg">{a.description}</p></Link></li>
+              <li key={a.id}><Link href={`/pr/gallery/${a.id}`} className="group block"><DemoArt hue={a.hue} src={albumImage(a)} captionOnImage ratio="4/3" className="transition-transform duration-500 group-hover:-translate-y-1" title={a.title} subtitle={`${a.assets.length} photos`} /><p className="mt-2 text-sm text-muted-fg">{a.description}</p></Link></li>
             ))}
           </ul>
         )}

@@ -15,6 +15,8 @@ import { useApiQuery } from "@/lib/query";
 import { fan } from "@/lib/api";
 import { useSession } from "@/stores/session";
 import { fmtDate, fmtRelative } from "@/lib/utils";
+import { rewardImage } from "@/data/images";
+
 
 function HomeSkeleton() {
   return <div className="space-y-8"><Skeleton className="h-10 w-64" /><LoadingSkeleton variant="hero" /><div className="grid gap-4 md:grid-cols-2"><Skeleton className="h-40" /><Skeleton className="h-40" /></div><LoadingSkeleton variant="cards" /></div>;
@@ -42,8 +44,8 @@ export default function FanHome() {
             {/* Hero */}
             <motion.section initial={{ opacity: 0, scale: 0.985 }} animate={{ opacity: 1, scale: 1 }} aria-label="Featured">
               <Link href={`/pr/movies/${h.featuredMovie.id}`} className="group relative block overflow-hidden rounded-[var(--radius-xl)]">
-                <DemoArt hue={h.featuredMovie.hue} rounded={false} label={false} className="aspect-[4/5] min-h-[22rem] transition-transform duration-700 group-hover:scale-[1.02] sm:aspect-[16/9] lg:aspect-[21/9]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                <DemoArt hue={h.featuredMovie.hue} rounded={false} label={false} src={h.featuredMovie.poster} className="aspect-[4/5] min-h-[22rem] transition-transform duration-700 group-hover:scale-[1.02] sm:aspect-[16/9] lg:aspect-[21/9]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" /><div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/25 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10">
                   <div className="mb-3 flex flex-wrap gap-2"><OfficialBadge /><DemoContentBadge label="Demo catalogue" /></div>
                   <p className="text-xs font-semibold tracking-[0.2em] uppercase opacity-80">Featured · {h.featuredMovie.year}</p>
@@ -57,7 +59,7 @@ export default function FanHome() {
             {/* Daily + journey */}
             <section className="grid gap-4 md:grid-cols-2" aria-label="Your day">
               <Link href="/games/play/quiz-daily" className="relative overflow-hidden rounded-[var(--radius-lg)] bg-ink p-6 text-on-ink transition-transform hover:-translate-y-0.5">
-                <DemoArt hue={12} rounded={false} label={false} className="absolute inset-0 opacity-40" />
+                <DemoArt hue={12} rounded={false} label={false} src="/images/sections/games.jpg" className="absolute inset-0" /><div aria-hidden className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/30" />
                 <div className="relative">
                   <p className="flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-[#ffb59f] uppercase"><GameController weight="fill" className="size-4" aria-hidden />Daily challenge</p>
                   <p className="font-display mt-2 text-3xl font-semibold">{h.daily.done ? "Done for today" : "Three quick questions"}</p>
@@ -120,7 +122,7 @@ export default function FanHome() {
                 {h.recentUnlocks.length === 0 && h.newBadges.length === 0 ? <EmptyState title="Nothing unlocked yet" body="Play a quiz or join an event to earn your first reward." icon={<Gift className="size-7" aria-hidden />} /> : (
                   <div className="space-y-3">
                     {h.newBadges.map((b) => <Card key={b.id} className="flex items-center gap-3 p-4"><span className="grid size-11 place-items-center rounded-full text-white" style={{ background: `hsl(${b.hue} 65% 42%)` }}><Seal weight="fill" className="size-6" aria-hidden /></span><div><p className="font-medium">{b.name}</p><p className="text-xs text-muted-fg">{b.description}</p></div></Card>)}
-                    {h.recentUnlocks.map((u) => <Card key={u.rewardId} className="flex items-center gap-3 p-4"><DemoArt hue={u.reward.hue} ratio="1/1" label={false} className="size-11 !rounded-xl" /><div><p className="font-medium">{u.reward.name}</p><StatusBadge status="approved" label="Unlocked" /></div></Card>)}
+                    {h.recentUnlocks.map((u) => <Card key={u.rewardId} className="flex items-center gap-3 p-4"><DemoArt hue={u.reward.hue} src={rewardImage(u.reward)} ratio="1/1" label={false} className="size-11 !rounded-xl" /><div><p className="font-medium">{u.reward.name}</p><StatusBadge status="approved" label="Unlocked" /></div></Card>)}
                     <Link href="/profile/rewards" className="block text-sm font-medium text-accent">Open rewards</Link>
                   </div>
                 )}

@@ -13,7 +13,7 @@ export const audit = (p: Omit<AuditEvent, "id">): AuditEvent => ({ id: `aud-${++
 /* ---------- Events ---------- */
 export const EVENTS: PREvent[] = [
   {
-    id: "evt-meetup", title: "Mylapore Fan Meet-up", category: "meetup", hue: 330, status: "published",
+    id: "evt-meetup", image: "/images/events/meetup.jpg", title: "Mylapore Fan Meet-up", category: "meetup", hue: 330, status: "published",
     summary: "An evening of games, filter coffee and conversation with fellow members.",
     purpose: "Bring local members together offline, run the PR trivia final, and hear community plans for the year.",
     startsAt: BASE_TIME + 9 * DAY + 8 * HOUR, endsAt: BASE_TIME + 9 * DAY + 11 * HOUR, venue: "Mandaveli Community Hall, Chennai", loc: MYL12,
@@ -22,7 +22,7 @@ export const EVENTS: PREvent[] = [
     schedule: [{ time: "5:30 PM", item: "Doors open and check-in" }, { time: "6:00 PM", item: "Welcome and community update" }, { time: "6:30 PM", item: "Trivia finals" }, { time: "7:30 PM", item: "Open mic and refreshments" }],
   },
   {
-    id: "evt-screening", title: "Community Screening Night", category: "screening", hue: 262, status: "published",
+    id: "evt-screening", image: "/images/events/screening.jpg", title: "Community Screening Night", category: "screening", hue: 262, status: "published",
     summary: "A members-only screening with a short discussion afterwards. Demo event.",
     purpose: "Watch together, discuss, and collect feedback for the next community programme.",
     startsAt: BASE_TIME + 16 * DAY + 9 * HOUR, endsAt: BASE_TIME + 16 * DAY + 13 * HOUR, venue: "Theatre hall, T. Nagar (venue to be confirmed)", loc: L("chennai", "t-nagar", "w-tnagar-8"),
@@ -30,7 +30,7 @@ export const EVENTS: PREvent[] = [
     schedule: [{ time: "6:00 PM", item: "Entry" }, { time: "6:30 PM", item: "Screening" }, { time: "9:00 PM", item: "Discussion circle" }],
   },
   {
-    id: "evt-workshop", title: "Short-Film Basics Workshop", category: "workshop", hue: 38, status: "published",
+    id: "evt-workshop", image: "/images/events/workshop.jpg", title: "Short-Film Basics Workshop", category: "workshop", hue: 38, status: "published",
     summary: "A beginner workshop on storyboarding and phone-camera filmmaking.",
     purpose: "Help fan creators make better reels that meet community guidelines.",
     startsAt: BASE_TIME + 22 * DAY + 4 * HOUR, endsAt: BASE_TIME + 22 * DAY + 8 * HOUR, venue: "Library Auditorium, Coimbatore", loc: L("coimbatore", "cbe-north", "w-cbn-3"),
@@ -38,7 +38,7 @@ export const EVENTS: PREvent[] = [
     schedule: [{ time: "10:00 AM", item: "Storyboard basics" }, { time: "11:30 AM", item: "Shoot a 20-second scene" }, { time: "1:00 PM", item: "Review and feedback" }],
   },
   {
-    id: "evt-bloodcamp", title: "Community Blood Donation Drive", category: "welfare", hue: 12, status: "published",
+    id: "evt-bloodcamp", image: "/images/events/blood.jpg", title: "Community Blood Donation Drive", category: "welfare", hue: 12, status: "published",
     summary: "A volunteer-led drive organised with a licensed local blood bank. Demo event.",
     purpose: "Encourage safe, voluntary donation and thank volunteers.",
     startsAt: BASE_TIME + 12 * DAY + 3 * HOUR, endsAt: BASE_TIME + 12 * DAY + 8 * HOUR, venue: "Government clinic grounds, Velachery", loc: L("chennai", "velachery", "w-velachery-21"),
@@ -46,7 +46,7 @@ export const EVENTS: PREvent[] = [
     schedule: [{ time: "9:00 AM", item: "Registration" }, { time: "9:30 AM", item: "Screening and donation" }, { time: "1:00 PM", item: "Volunteer thank-you" }],
   },
   {
-    id: "evt-anniv", title: "Fan Club Anniversary Day", category: "celebration", hue: 150, status: "published",
+    id: "evt-anniv", image: "/images/events/celebration.jpg", title: "Fan Club Anniversary Day", category: "celebration", hue: 150, status: "published",
     summary: "A celebration of the first year of the community. Past event.",
     purpose: "Recognise volunteers and look back on the year.",
     startsAt: BASE_TIME - 30 * DAY + 4 * HOUR, endsAt: BASE_TIME - 30 * DAY + 8 * HOUR, venue: "Mandaveli Community Hall, Chennai", loc: MYL12,
@@ -54,7 +54,7 @@ export const EVENTS: PREvent[] = [
     schedule: [{ time: "10:00 AM", item: "Welcome" }, { time: "11:00 AM", item: "Volunteer recognition" }],
   },
   {
-    id: "evt-draft", title: "Madurai Reels Meet (Draft)", category: "meetup", hue: 100, status: "draft",
+    id: "evt-draft", image: "/images/events/community.jpg", title: "Madurai Reels Meet (Draft)", category: "meetup", hue: 100, status: "draft",
     summary: "Draft event awaiting publication.", purpose: "Local creators meet to share work.",
     startsAt: BASE_TIME + 40 * DAY + 5 * HOUR, endsAt: BASE_TIME + 40 * DAY + 8 * HOUR, venue: "To be confirmed", loc: L("madurai", "madurai-central", "w-mdc-5"),
     capacity: 50, eligibility: "Approved members.", accessibility: "To be confirmed.", organiser: "Madurai District Team", requiresMembership: true, schedule: [],
@@ -75,11 +75,11 @@ export const RSVPS: EventRSVP[] = [
 ];
 
 export const WELFARE: WelfareActivity[] = [
-  { id: "wel-trees", title: "Neighbourhood Tree Planting", purpose: "Plant native saplings in public spaces with permission from the local body. Demo activity.", startsAt: BASE_TIME + 14 * DAY + 2 * HOUR, venue: "Besant Nagar park (to be confirmed)", loc: L("chennai", "mylapore", "w-mylapore-12"),
+  { id: "wel-trees", image: "/images/events/trees.jpg", title: "Neighbourhood Tree Planting", purpose: "Plant native saplings in public spaces with permission from the local body. Demo activity.", startsAt: BASE_TIME + 14 * DAY + 2 * HOUR, venue: "Besant Nagar park (to be confirmed)", loc: L("chennai", "mylapore", "w-mylapore-12"),
     eligibility: "Approved members; minors need a guardian.", steps: ["Register your participation", "Receive confirmation from your Ward Admin", "Arrive 15 minutes early with a water bottle", "Check in with the volunteer lead"], capacity: 30, hue: 130, status: "published" },
-  { id: "wel-kits", title: "School Kit Collection", purpose: "Collect notebooks and stationery for a partner school. Demo activity — partner details pending.", startsAt: BASE_TIME + 20 * DAY + 4 * HOUR, venue: "Community hall, Velachery", loc: L("chennai", "velachery", "w-velachery-21"),
+  { id: "wel-kits", image: "/images/events/school-kits.jpg", title: "School Kit Collection", purpose: "Collect notebooks and stationery for a partner school. Demo activity — partner details pending.", startsAt: BASE_TIME + 20 * DAY + 4 * HOUR, venue: "Community hall, Velachery", loc: L("chennai", "velachery", "w-velachery-21"),
     eligibility: "Open to approved members.", steps: ["Register participation", "Pack your donation using the checklist", "Drop off at the community hall", "Confirm with the volunteer"], capacity: 50, hue: 38, status: "published" },
-  { id: "wel-cleanup", title: "Beach Clean-up Morning", purpose: "A volunteer clean-up held earlier this year. Demo record.", startsAt: BASE_TIME - 45 * DAY, venue: "Marina Beach", loc: L("chennai", "mylapore", "w-mylapore-12"),
+  { id: "wel-cleanup", image: "/images/events/community.jpg", title: "Beach Clean-up Morning", purpose: "A volunteer clean-up held earlier this year. Demo record.", startsAt: BASE_TIME - 45 * DAY, venue: "Marina Beach", loc: L("chennai", "mylapore", "w-mylapore-12"),
     eligibility: "Approved members.", steps: ["Register", "Collect gloves and bags", "Clean the assigned stretch"], capacity: 40, hue: 200, status: "completed" },
 ];
 export const PARTICIPATIONS: WelfareParticipation[] = [

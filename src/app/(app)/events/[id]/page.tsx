@@ -26,7 +26,7 @@ export default function EventDetail({ params }: { params: Promise<{ id: string }
           {e.status === "cancelled" && <p role="alert" className="mb-6 rounded-2xl bg-danger-soft p-4 font-medium text-danger">This event has been cancelled.</p>}
           <div className="grid gap-8 lg:grid-cols-[1fr_22rem]">
             <div className="space-y-10">
-              <DemoArt hue={e.hue} ratio="21/9" label={false} title={e.title} subtitle={locLabel(e.loc, 2)} className="min-h-48" />
+              <DemoArt hue={e.hue} ratio="21/9" label={false} src={e.image} title={e.title} subtitle={locLabel(e.loc, 2)} className="min-h-48" />
               <dl className="grid gap-4 sm:grid-cols-2">
                 <div className="flex gap-3"><CalendarBlank className="size-6 shrink-0 text-accent" aria-hidden /><div><dt className="text-sm text-muted-fg">When</dt><dd className="font-medium">{fmtDateTime(e.startsAt)} – {fmtTime(e.endsAt)}</dd></div></div>
                 <div className="flex gap-3"><MapPin className="size-6 shrink-0 text-accent" aria-hidden /><div><dt className="text-sm text-muted-fg">Where</dt><dd className="font-medium">{e.venue}</dd><dd className="text-sm text-muted-fg">{locLabel(e.loc)}</dd></div></div>

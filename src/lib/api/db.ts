@@ -26,7 +26,7 @@ export interface DB {
   audit: AuditEvent[]; jobs: AIQuizGenerationJob[]; clockOffset: number; counter: number; memberCounter: number;
 }
 
-const STORAGE_KEY = "prshow.demo.db.v1"; // demo data only — never identity documents or biometrics
+const STORAGE_KEY = "prshow.demo.db.v7"; // demo data only — never identity documents or biometrics
 
 function extraAttempts(): QuizAttempt[] {
   const published = QUIZZES.filter((q) => q.status === "published" && q.mode !== "onboarding");

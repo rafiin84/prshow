@@ -6,7 +6,7 @@ import { BASE_TIME, DAY, HOUR } from "./time";
  * and flagged `verified: false` until the official team supplies approved details. */
 export const MOVIES: Movie[] = [
   {
-    id: "movie-comali", title: "Comali", year: 2019, role: "Director", genres: ["Comedy", "Fantasy"], runtime: "≈ 2h 20m", hue: 38,
+    id: "movie-comali", poster: "/images/movies/comali.jpg", backdrop: "/images/movies/comali-backdrop.jpg", title: "Comali", year: 2019, role: "Director", genres: ["Comedy", "Fantasy"], runtime: "≈ 2h 20m", hue: 38,
     synopsis: "A time-travel comedy about a man who wakes up after a long sleep to a very different world. Demo synopsis — official copy pending.",
     cast: [{ name: "Jayam Ravi", as: "Lead" }, { name: "Kajal Aggarwal" }], crew: [{ name: "Pradeep Ranganathan", job: "Director" }],
     verified: false,
@@ -14,7 +14,7 @@ export const MOVIES: Movie[] = [
     stills: ["Opening scene", "Title card", "Poster concept"], status: "published",
   },
   {
-    id: "movie-love-today", title: "Love Today", year: 2022, role: "Writer · Director · Actor", genres: ["Romantic comedy", "Drama"], runtime: "≈ 2h 35m", hue: 330,
+    id: "movie-love-today", poster: "/images/movies/love-today.jpg", backdrop: "/images/movies/love-today-backdrop.jpg", title: "Love Today", year: 2022, role: "Writer · Director · Actor", genres: ["Romantic comedy", "Drama"], runtime: "≈ 2h 35m", hue: 330,
     synopsis: "Two young people agree to swap phones for a day before their wedding is confirmed. Demo synopsis — official copy pending.",
     cast: [{ name: "Pradeep Ranganathan", as: "Lead" }, { name: "Ivana" }], crew: [{ name: "Pradeep Ranganathan", job: "Writer & Director" }],
     verified: false,
@@ -22,7 +22,7 @@ export const MOVIES: Movie[] = [
     stills: ["Phone swap", "Family dinner", "Title card"], status: "published",
   },
   {
-    id: "movie-dragon", title: "Dragon", year: 2025, role: "Actor", genres: ["Comedy", "Drama"], runtime: "≈ 2h 30m", hue: 12,
+    id: "movie-dragon", poster: "/images/movies/dragon.jpg", backdrop: "/images/movies/dragon.jpg", title: "Dragon", year: 2025, role: "Actor", genres: ["Comedy", "Drama"], runtime: "≈ 2h 30m", hue: 12,
     synopsis: "A coming-of-age campus-to-career story about shortcuts and second chances. Demo synopsis — official copy pending.",
     cast: [{ name: "Pradeep Ranganathan", as: "Lead" }, { name: "Anupama Parameswaran" }], crew: [{ name: "Ashwath Marimuthu", job: "Director" }],
     verified: false,

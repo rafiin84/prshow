@@ -5,6 +5,8 @@ import { DemoArt } from "@/components/media";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/dialog";
 import type { GalleryAsset } from "@/types";
+import { assetImage } from "@/data/images";
+
 
 export function GalleryLightbox({ assets, index, onIndex, onClose, saved, onSave, onShare }: { assets: GalleryAsset[]; index: number | null; onIndex: (i: number) => void; onClose: () => void; saved: (id: string) => boolean; onSave: (id: string) => void; onShare: (a: GalleryAsset) => void }) {
   const open = index !== null;
@@ -26,7 +28,7 @@ export function GalleryLightbox({ assets, index, onIndex, onClose, saved, onSave
       </div>}>
       {a && (
         <figure>
-          <DemoArt hue={a.hue} ratio={String(Math.min(1.6, Math.max(0.75, a.ratio)))} alt={a.caption} label="Demo art" className="mx-auto max-h-[60dvh] w-full" />
+          <DemoArt hue={a.hue} src={assetImage(a)} ratio={String(Math.min(1.6, Math.max(0.75, a.ratio)))} alt={a.caption} label="Demo art" className="mx-auto max-h-[60dvh] w-full" />
           <figcaption className="mt-4"><p className="font-medium">{a.caption}</p><p className="text-sm text-muted-fg">{a.credit}</p><p className="mt-1 text-xs text-muted-fg">Tip: use ← → to browse, Esc to close.</p></figcaption>
         </figure>
       )}

@@ -13,6 +13,8 @@ import { useAdmin } from "@/features/admin/use-admin";
 import { useApiMutation, useApiQuery } from "@/lib/query";
 import { admin as adminApi } from "@/lib/api";
 import { locLabel } from "@/data/seeds/locations";
+import { reelImage } from "@/data/images";
+
 
 type Tab = "review" | "published" | "decided";
 export default function AdminReels() {
@@ -31,7 +33,7 @@ export default function AdminReels() {
           if (list.length === 0) return <EmptyState title="Nothing here" body={tab === "review" ? "No fan reels are waiting for review in your scope." : "Nothing matches this view."} />;
           return (
             <ul className="space-y-3">{list.map(({ reel: r, case: c }) => (
-              <li key={r.id}><Card className="flex flex-wrap items-center gap-4 p-4"><DemoArt hue={r.hue} ratio="9/16" label={false} className="w-14 shrink-0 !rounded-xl" />
+              <li key={r.id}><Card className="flex flex-wrap items-center gap-4 p-4"><DemoArt hue={r.hue} src={reelImage(r)} ratio="9/16" label={false} className="w-14 shrink-0 !rounded-xl" />
                 <div className="min-w-0 flex-1"><div className="flex flex-wrap items-center gap-2"><h2 className="font-semibold">{r.title}</h2><StatusBadge status={r.status} />{r.source === "official" ? <OfficialBadge /> : <FanContentBadge />}</div><p className="text-sm text-muted-fg">{r.creatorName}{r.loc ? ` · ${locLabel(r.loc, 3)}` : ""} · {r.published ? "Visible in the public feed" : "Not public"}</p>{r.reviewNote && <p className="mt-1 text-sm">“{r.reviewNote}”</p>}</div>
                 <div className="flex gap-2">{c && <Link href={`/admin/moderation/${c.id}`} className={buttonStyles({ size: "sm", variant: "outline" })}>{["approved", "rejected", "needs_correction"].includes(c.status) ? "View decision" : "Review"}</Link>}{r.status === "approved" && <Button size="sm" variant={r.published ? "ghost" : "primary"} loading={pub.isPending} onClick={() => pub.mutate({ id: r.id, p: !r.published })}>{r.published ? "Unpublish" : "Publish"}</Button>}</div></Card></li>
             ))}</ul>

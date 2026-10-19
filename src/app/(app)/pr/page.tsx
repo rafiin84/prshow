@@ -9,6 +9,8 @@ import { buttonStyles } from "@/components/ui/button";
 import { MovieCard } from "@/features/movies/movie-card";
 import { useApiQuery } from "@/lib/query";
 import { fan } from "@/lib/api";
+import { albumImage } from "@/data/images";
+
 
 export default function PRHub() {
   const movies = useApiQuery(["movies", "hub"], () => fan.listMovies());
@@ -16,7 +18,7 @@ export default function PRHub() {
   return (
     <div className="space-y-12">
       <section className="relative overflow-hidden rounded-[var(--radius-xl)] bg-ink p-7 text-on-ink sm:p-12">
-        <DemoArt hue={330} rounded={false} label={false} className="absolute inset-0 opacity-60" />
+        <DemoArt hue={330} rounded={false} label={false} src="/images/sections/pr.jpg" className="absolute inset-0" /><div aria-hidden className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/10" />
         <div className="relative max-w-xl"><div className="mb-3 flex gap-2"><OfficialBadge /><DemoContentBadge label="Demo catalogue" /></div>
           <p className="text-xs font-semibold tracking-[0.2em] text-[#ffb59f] uppercase">PR</p>
           <h1 className="font-display mt-2 text-5xl leading-none font-semibold sm:text-7xl">The films.<br />The frames.</h1>
@@ -37,7 +39,7 @@ export default function PRHub() {
         <QueryBoundary query={albums} skeleton={<LoadingSkeleton variant="cards" count={3} />}>
           {(list) => (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {list.map((a) => <Link key={a.id} href={`/pr/gallery/${a.id}`} className="group block"><DemoArt hue={a.hue} ratio="4/3" title={a.title} subtitle={`${a.assets.length} photos`} className="transition-transform duration-500 group-hover:-translate-y-1" /></Link>)}
+              {list.map((a) => <Link key={a.id} href={`/pr/gallery/${a.id}`} className="group block"><DemoArt hue={a.hue} src={albumImage(a)} captionOnImage ratio="4/3" title={a.title} subtitle={`${a.assets.length} photos`} className="transition-transform duration-500 group-hover:-translate-y-1" /></Link>)}
             </div>
           )}
         </QueryBoundary>
