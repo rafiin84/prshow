@@ -26,8 +26,8 @@ export default function Welcome() {
   return (
     <div>
       <section className="relative isolate overflow-hidden bg-ink text-on-ink">
-        <DemoArt hue={350} rounded={false} label={false} className="absolute inset-0 -z-10 opacity-80" />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+        <DemoArt hue={350} rounded={false} label={false} src="/images/welcome-hero.jpg" className="absolute inset-0 -z-10" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/60 to-ink/30" /><div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/80 via-ink/30 to-transparent" />
         <div className="mx-auto flex min-h-[88dvh] max-w-5xl flex-col justify-between px-6 pt-6 pb-12">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-2"><span className="grid size-9 place-items-center rounded-full bg-accent text-accent-fg"><FilmSlate weight="fill" className="size-5" aria-hidden /></span><span className="font-display text-lg font-bold">{t("brand.name")}</span></span>
@@ -77,7 +77,7 @@ export default function Welcome() {
         <div className="mt-4 flex flex-wrap gap-2">
           {ADMIN_ROLES.map(([r, id, label]) => <Button key={r} variant="outline" onClick={() => go(r, id)}>{label}</Button>)}
         </div>
-        <p className="mt-8 text-xs text-muted-fg">Seed content is demo content. Titles and years are limited to widely known facts; synopses, cast lists, and artwork are placeholders pending approval from the official team. <Link href="/help" className="underline">Privacy &amp; guidelines</Link></p>
+        <p className="mt-8 text-xs text-muted-fg">Hero photo: stock cinema audience by <a className="underline" href="https://unsplash.com" target="_blank" rel="noreferrer">Unsplash</a> (generic stock, not PR imagery). Seed content is demo content. Titles and years are limited to widely known facts; synopses, cast lists, and artwork are placeholders pending approval from the official team. <Link href="/help" className="underline">Privacy &amp; guidelines</Link></p>
       </section>
     </div>
   );
