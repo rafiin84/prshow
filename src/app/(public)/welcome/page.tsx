@@ -26,8 +26,8 @@ export default function Welcome() {
   return (
     <div>
       <section className="relative isolate overflow-hidden bg-ink text-on-ink">
-        <DemoArt hue={350} rounded={false} label={false} src="/images/welcome-hero.jpg" className="absolute inset-0 -z-10" />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/60 to-ink/30" /><div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/80 via-ink/30 to-transparent" />
+        <div className="absolute inset-y-0 right-0 -z-10 w-full md:w-[72%] md:[mask-image:linear-gradient(to_right,transparent,black_38%)]"><DemoArt hue={350} rounded={false} label={false} src="/images/welcome-pr2.jpg" alt="Still from a film" className="size-full" /></div>
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/50 to-ink/20" /><div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/75 to-ink/0 md:via-ink/60 md:to-ink/0 max-md:from-ink/70 max-md:via-ink/50 max-md:to-ink/40" />
         <div className="mx-auto flex min-h-[88dvh] max-w-5xl flex-col justify-between px-6 pt-6 pb-12">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-2"><span className="grid size-9 place-items-center rounded-full bg-accent text-accent-fg"><FilmSlate weight="fill" className="size-5" aria-hidden /></span><span className="font-display text-lg font-bold">{t("brand.name")}</span></span>
@@ -56,7 +56,7 @@ export default function Welcome() {
         </div>
       </section>
 
-      <section className="bg-muted/60 py-16">
+      <section className="relative isolate overflow-hidden bg-muted/60 py-16"><DemoArt hue={350} rounded={false} label={false} src="/images/welcome-hero.jpg" className="absolute inset-0 -z-10 opacity-[.14]" />
         <div className="mx-auto grid max-w-5xl gap-10 px-6 md:grid-cols-2 md:items-center">
           <div>
             <p className="mb-2 flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase"><Medal weight="fill" className="size-4" aria-hidden />Your PR Journey</p>
