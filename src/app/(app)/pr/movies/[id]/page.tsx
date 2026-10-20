@@ -32,7 +32,7 @@ export default function MovieDetail({ params }: { params: Promise<{ id: string }
         <div className="space-y-10">
           <section className="relative -mx-4 overflow-hidden sm:mx-0 sm:rounded-[var(--radius-xl)]">
             <DemoArt hue={m.hue} rounded={false} label={false} src={m.backdrop ?? m.poster} className="absolute inset-0" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/55 backdrop-blur-[3px]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
             <div className="relative flex flex-col gap-6 p-6 pt-24 text-white sm:flex-row sm:items-end sm:p-10 sm:pt-32">
               <MoviePoster movie={m} className="w-36 shrink-0 shadow-pop sm:w-48" />
               <div className="min-w-0">

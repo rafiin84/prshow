@@ -26,7 +26,7 @@ export interface DB {
   audit: AuditEvent[]; jobs: AIQuizGenerationJob[]; clockOffset: number; counter: number; memberCounter: number;
 }
 
-const STORAGE_KEY = "prshow.demo.db.v7"; // demo data only — never identity documents or biometrics
+const STORAGE_KEY = "prshow.demo.db.v8"; // demo data only — never identity documents or biometrics
 
 function extraAttempts(): QuizAttempt[] {
   const published = QUIZZES.filter((q) => q.status === "published" && q.mode !== "onboarding");
@@ -74,7 +74,12 @@ export function getDB(): DB {
   if (typeof window !== "undefined") {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) { db = JSON.parse(raw) as DB; return db; }
+      if (raw) {
+        db = JSON.parse(raw) as DB;
+        // Artwork paths are static assets, not user state: always take them from the seed so older saved data can't hide new images.
+        db.movies.forEach((m) => { const s = MOVIES.find((x) => x.id === m.id); if (s) { m.poster = s.poster; m.backdrop = s.backdrop; } });
+        return db;
+      }
     } catch { /* storage unavailable: fall through to seed */ }
   }
   db = createDB();

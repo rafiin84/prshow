@@ -30,7 +30,7 @@ export const MOVIES: Movie[] = [
     stills: ["College days", "Interview room", "Title card"], status: "published",
   },
   {
-    id: "movie-demo-next", title: "Untitled Upcoming Project", year: 2026, role: "To be announced", genres: ["To be announced"], hue: 262,
+    id: "movie-demo-next", poster: "/images/movies/prs-01.jpg", backdrop: "/images/movies/prs-01-banner.jpg", title: "Untitled Upcoming Project", year: 2026, role: "To be announced", genres: ["To be announced"], hue: 262,
     synopsis: "Placeholder entry reserved for the next official announcement. Nothing here is confirmed.",
     cast: [], crew: [], verified: false, mediaSlots: [{ id: "m1", kind: "trailer", title: "Teaser slot", available: false }], stills: ["Concept frame"], status: "published",
   },
